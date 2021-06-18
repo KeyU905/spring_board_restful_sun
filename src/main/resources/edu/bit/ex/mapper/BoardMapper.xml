@@ -16,6 +16,13 @@
    ]]>
    	</select>
    
+   	
+     <delete id="delete">
+   <![CDATA[
+      delete from mvc_board where bid = #{bid}
+   ]]>
+   </delete>
+   
    
    
    

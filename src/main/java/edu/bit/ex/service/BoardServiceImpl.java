@@ -28,7 +28,18 @@ public class BoardServiceImpl implements BoardService{
         log.info("service:get()...");
         return boardMapper.read(bid);
     }
- 
+   
+       
+    @Override
+    public void delete(BoardVO boardVO) {
+        log.info("service:delete()...");
+        
+        boardMapper.delete(boardVO);
+        
+        System.out.println(boardVO.getBid());
+    }
 	
+    
+    
 	
 }

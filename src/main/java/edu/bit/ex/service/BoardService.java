@@ -12,6 +12,7 @@ public interface BoardService {
    List<BoardVO> getList();
    
    BoardVO get(int bid);
-	
+
+   void delete(BoardVO boardVO);
 	
 }

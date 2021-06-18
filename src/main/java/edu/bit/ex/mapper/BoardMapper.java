@@ -11,5 +11,5 @@ import edu.bit.ex.vo.BoardVO;
 public interface BoardMapper {
    List<BoardVO> getList();
    BoardVO read(int bid);
-	
+   void delete(BoardVO boardVO);
 }
