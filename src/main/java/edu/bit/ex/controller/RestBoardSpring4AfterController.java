@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,6 +36,16 @@ public class RestBoardSpring4AfterController {
 	    model.addAttribute("list", list);
 	    
 	    return list;
+	}
+	
+	
+	// 자바객체 list를 json 형태 바꾸어줌
+	@GetMapping("/rest/{bid}")
+	public BoardVO restGet(@PathVariable("bid") int bid) {
+	    log.info("restGet()..");
+	    
+	    
+	    return boardService.get(bid);
 	}
 	
 }

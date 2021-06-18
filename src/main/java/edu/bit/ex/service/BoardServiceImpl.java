@@ -19,7 +19,14 @@ public class BoardServiceImpl implements BoardService{
     
     @Override
     public List<BoardVO> getList() {
+        
         return boardMapper.getList();
+    }
+
+    @Override
+    public BoardVO get(int bid) {
+        log.info("service:get()...");
+        return boardMapper.read(bid);
     }
  
 	
