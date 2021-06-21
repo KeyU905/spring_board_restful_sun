@@ -31,12 +31,11 @@ public class BoardServiceImpl implements BoardService{
    
        
     @Override
-    public void delete(BoardVO boardVO) {
+    public int remove(int bid) {
         log.info("service:delete()...");
         
-        boardMapper.delete(boardVO);
+        return boardMapper.delete(bid);
         
-        System.out.println(boardVO.getBid());
     }
 	
     

@@ -13,6 +13,6 @@ public interface BoardService {
    
    BoardVO get(int bid);
 
-   void delete(BoardVO boardVO);
+   int remove(int bid);
 	
 }

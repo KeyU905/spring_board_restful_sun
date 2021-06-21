@@ -226,6 +226,14 @@
          <artifactId>spring-security-taglibs</artifactId>
          <version>${org.security-version}</version>
       </dependency>
+      
+      <!-- https://mvnrepository.com/artifact/taglibs/standard -->
+<dependency>
+    <groupId>taglibs</groupId>
+    <artifactId>standard</artifactId>
+    <version>1.1.2</version>
+</dependency>
+      
 
    </dependencies>
 

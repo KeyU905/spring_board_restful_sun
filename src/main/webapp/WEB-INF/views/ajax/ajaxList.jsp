@@ -22,8 +22,8 @@
    
       function getList(){
          var url = "${pageContext.request.contextPath}/rest/after.json";
-         // 이 url 위치 찍어보면 알겠지만, RestBoardSpring4AfterController 에 있는
-         // url이다.
+         // 이 url 위치 찍어보면 알겠지만, 
+         // RestBoardSpring4AfterController에 있는url이다.
          //
          // 비동기 통신
          
@@ -62,9 +62,8 @@
                           htmls += '<a href="${pageContext.request.contextPath}/content_view?bId=' + this.bid + '">' + this.btitle + '</a></td>';
                           htmls += '<td>'+ this.bdate + '</td>'; 
                           htmls += '<td>'+ this.bhit + '</td>';   
-                          htmls += '<td>'
-                          htmls += '<a class = a-delete href="${pageContext.request.contextPath}/ajax/delete?bid='+this.bid+'"> 삭제 &nbsp;&nbsp </a></td>';   
-                              
+                       // htmls += '<td>'+  '<a class = a-delete href="${pageContext.request.contextPath}/ajax/delete?bid='+this.bid+'"> 삭제 &nbsp;&nbsp </a></td>';   
+                          htmls += '<td>'+  '<a class="a-delete" data-bid="${dto.bid}" href="${pageContext.request.contextPath}/ajax/delete?bid=' + this.bid +'">' +'삭제</a>'  + '</td>';       
                           htmls += '</tr>';
                           
                       });   //each end
@@ -97,12 +96,18 @@
              //해당 tr제거
              var trObj =  $(this).parent().parent();
              
+             var result;
+             
              $.ajax({
                  type : "GET",
                  url : $(this).attr("href"),
 /*                  data:{"bId":"${content_view.bId}"},  */
-                 success: function (result) {       
+                 async:false,
+                 dataType:'json',
+                 success: function (data) {       
                      console.log(result); 
+                     result = data;
+                     
                    if(result == "SUCCESS"){
                         getList();
                       $(trObj).remove();  
@@ -120,6 +125,36 @@
       });
    </script>
    
+      <script>
+      $(document).ready(function(){
+         $(document).on("click",".a-delete",function(event){
+            //prevendDefault()는 href로 연결해 주지 않고 단순히 click에 대한 처리를 하도록 해준다.
+            event.preventDefault();
+            console.log("ajax 호출전"); 
+            //해당 tr제거
+            var trObj =  $(this).parent().parent();
+            
+            $.ajax({
+                type : "GET",
+                url : $(this).attr("href"),
+                success: function (result) {       
+                    console.log(result); 
+                  if(result == "SUCCESS"){
+                       //getList();
+                     $(trObj).remove();  
+                               
+                  }                       
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+             
+         });   
+      
+      });
+   </script>
+  
    <script>
       $(document).ready(function(){
          getList();

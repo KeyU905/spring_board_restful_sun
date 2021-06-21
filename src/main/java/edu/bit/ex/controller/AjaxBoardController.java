@@ -27,16 +27,15 @@ public class AjaxBoardController {
 	    return "ajax/ajaxList";
 	}
 	
+	 @ResponseBody
 	 @GetMapping("/delete")
      public String delete(BoardVO boardVO, Model model) {
          log.info("delete()..");
+         log.info(boardVO);
          
-         boardService.delete(boardVO);
+         boardService.remove(boardVO.getBid());
          
-         String message = new String("SUCCESS");
-         
-         
-         return message;
+         return "SUCCESS";
          
      }
   
