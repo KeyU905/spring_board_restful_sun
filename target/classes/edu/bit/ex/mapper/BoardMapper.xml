@@ -23,7 +23,11 @@
    ]]>
    </delete>
    
-   
+   <update id="update">
+   <![CDATA[
+   	update mvc_board set bname = #{bname}, btitle = #{btitle}, bcontent = #{bcontent} where bid = #{bid}
+   ]]>
+   </update>
    
    
 </mapper>

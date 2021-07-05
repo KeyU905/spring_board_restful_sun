@@ -32,11 +32,14 @@
 			    url : $(this).attr("action"),
 			    cache : false,
 			    contentType:'application/json; charset=utf-8',
- 			    data: JSON.stringify(form), 
+ 			    data: JSON.stringify(form), // form을 json string 형태로 넘기겠다..
 			    success: function (result) {       
 					if(result == "SUCCESS"){
 						//list로 
-						$(location).attr('href', '${pageContext.request.contextPath}/restful/board/')				      	       
+						$(location).attr('href', '${pageContext.request.contextPath}/restful/board/')
+						// 성공을 하게 되면 location 객체를 사용해 list 주소로 넘긴다.
+						// windows.location.href  와 같은 것.
+						
 					}					        
 			    },
 			    error: function (e) {

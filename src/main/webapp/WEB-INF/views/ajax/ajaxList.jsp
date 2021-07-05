@@ -36,6 +36,8 @@
                var htmls = "";
                
                $("#list_table").html("");
+               //.html()은 선택한 요소 안의 내용을 가져오거나, 다른 내용으로 바꿉니다. 
+               //.text()와 비슷하지만 태그의 처리가 다릅니다.
                
                $("<tr>" , {
                   html : "<td>" + "번호" + "</td>"+  // 컬럼명들
@@ -45,6 +47,9 @@
                         "<td>" + "히트" + "</td>"+
                         "<td>" + "삭제" + "</td>"
                }).appendTo("#list_table") // 이것을 테이블에붙임
+              
+               //"#list_table" 이 있는 곳에 {html:  ~~} 의 형식인 
+               // "<tr>" 을 넣는다.
                
                if(result.length <1){
                   htmls.push("등록된 댓글이 없습니다.");
@@ -62,8 +67,7 @@
                           htmls += '<a href="${pageContext.request.contextPath}/content_view?bId=' + this.bid + '">' + this.btitle + '</a></td>';
                           htmls += '<td>'+ this.bdate + '</td>'; 
                           htmls += '<td>'+ this.bhit + '</td>';   
-                       // htmls += '<td>'+  '<a class = a-delete href="${pageContext.request.contextPath}/ajax/delete?bid='+this.bid+'"> 삭제 &nbsp;&nbsp </a></td>';   
-                          htmls += '<td>'+  '<a class="a-delete" data-bid="${dto.bid}" href="${pageContext.request.contextPath}/ajax/delete?bid=' + this.bid +'">' +'삭제</a>'  + '</td>';       
+                          htmls += '<td>'+  '<a class="a-delete" href="${pageContext.request.contextPath}/ajax/delete?bid=' + this.bid +'">' +'삭제</a>'  + '</td>';       
                           htmls += '</tr>';
                           
                       });   //each end
@@ -86,14 +90,15 @@
   
    </script>
    
+    <!--  
      <script>
       $(document).ready(function(){
      
          $('.a-delete').click(function(event){
-             //preventDefault()는 href로 연결해 주지 않고 단순히 click에 대한 처리를 하도록 해준다.
+
              event.preventDefault();
              console.log("ajax 호출전"); 
-             //해당 tr제거
+
              var trObj =  $(this).parent().parent();
              
              var result;
@@ -123,7 +128,7 @@
           });     
       
       });
-   </script>
+   </script> -->
    
       <script>
       $(document).ready(function(){
@@ -137,6 +142,10 @@
             $.ajax({
                 type : "GET",
                 url : $(this).attr("href"),
+                // this 요소의 href 속성의 값을 가져온다
+                // 저 .a-delete 의 주소를 가져와서 여기서 실행.
+                //위에서 event.preventDefault(); 를 통해
+                // url로 넘어가는 걸 막고, 실행 결과는 ajax를 통해 실행하기 위해 여기서 처리.
                 success: function (result) {       
                     console.log(result); 
                   if(result == "SUCCESS"){

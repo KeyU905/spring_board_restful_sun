@@ -15,4 +15,6 @@ public interface BoardService {
 
    int remove(int bid);
 	
+   void modify(BoardVO boardVO);
+   
 }
